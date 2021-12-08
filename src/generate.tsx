@@ -1,11 +1,11 @@
-import * as fs from "fs";
-
-import ReactDOMServer, { renderToString } from "react-dom/server";
-import { ServerStyleSheet, StyleSheetManager } from "styled-components";
-
 import Emails from "./emails/index";
 import React from "react";
+import { ServerStyleSheet } from "styled-components";
 import prettier from "prettier";
+import { renderToString } from "react-dom/server";
+import { writeFileSync } from "fs";
+
+console.log("Init.");
 
 Emails.map((Email) => {
   const sheet = new ServerStyleSheet();
@@ -13,16 +13,17 @@ Emails.map((Email) => {
   try {
     let html = renderToString(sheet.collectStyles(<Email />));
     const styleTags = sheet.getStyleTags(); // or sheet.getStyleElement();
-
-    html += styleTags;
+    html = styleTags + html;
 
     let htmlWDoc = "<!DOCTYPE html>" + html;
     let prettyHtml = prettier.format(htmlWDoc, { parser: "html" });
     let outputFile = `./output/${Email.name}.html`;
-    fs.writeFileSync(outputFile, prettyHtml);
+
+    writeFileSync(outputFile, prettyHtml);
+
     console.log(`Wrote ${outputFile}`);
   } catch (error) {
-    console.error(error);
+    console.error("Generate error: " + error);
   } finally {
     sheet.seal();
   }

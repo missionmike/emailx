@@ -7,7 +7,6 @@ import ReactDOM from "react-dom";
 import { mdxComponents } from "./components/mdxComponents";
 
 const EmailList = () => {
-  console.log(Emails);
   return (
     <div>
       {Emails.map((Email, index) => {
@@ -25,7 +24,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" key="root" element={<EmailList />} />
+        <Route path="/" element={<EmailList />} />
         {Emails.map((Email, index) => {
           const EmailComponent = () => {
             return (
@@ -35,11 +34,12 @@ const App = () => {
             );
           };
           return (
-            <Route
-              path={`/emails/${Email.name}`}
-              key={`route-${index.toString()}`}
-              element={<EmailComponent />}
-            />
+            <React.Fragment key={`route-${index.toString()}`}>
+              <Route
+                path={`/emails/${Email.name}`}
+                element={<EmailComponent />}
+              />
+            </React.Fragment>
           );
         })}
       </Routes>
@@ -47,4 +47,6 @@ const App = () => {
   );
 };
 
-ReactDOM.render(<App />, document.getElementById("root"));
+if (typeof window !== "undefined") {
+  ReactDOM.render(<App />, document.getElementById("root"));
+}

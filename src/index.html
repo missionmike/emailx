@@ -4,13 +4,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="format-detection" content="telephone=no">
+    <script src="./index.tsx" type="module"></script>
     <title></title>
 </head>
 
 <body>
-    <% for (var js in htmlWebpackPlugin.files.js) { %>
-    <script defer src="<%= htmlWebpackPlugin.files.js[js] %>"></script>
-    <% } %>
     <div id="root"></div>
 </body>
 
