@@ -1,12 +1,13 @@
 {
   "scripts": {
-    "start": "rm -rf .cache && parcel src/index.html",
-    "build": "rm -rf dist/* && parcel build src/generate.tsx",
-    "generate": "rm -rf output/* && node dist/generate.js",
-    "build:gen": "npm run build && npm run generate"
+    "develop": "rm -rf .parcel-cache && parcel src/index.html",
+    "build": "rm -rf dist/* && parcel build src/generator/generate.tsx",
+    "generate": "npm run build && rm -rf output/* && node dist/generate.js && rm -rf dist"
   },
   "devDependencies": {
     "@parcel/transformer-mdx": "^2.0.1",
+    "@parcel/transformer-sass": "^2.0.1",
+    "esbuild-wasm": "^0.14.3",
     "parcel": "^2.0.1"
   },
   "dependencies": {

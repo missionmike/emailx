@@ -10,4 +10,8 @@ const Table = styled.table<ITable>`
   background: white;
 `;
 
-export { Table };
+const Row = styled.tr``;
+
+const Column = styled.td``;
+
+export { Table, Row, Column };

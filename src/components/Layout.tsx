@@ -1,11 +1,11 @@
 // import "../css/reset.scss";
-import React from "react";
-import Helmet from "react-helmet";
 
-import { Table } from "./Table";
+import { Column, Row, Table } from "./Table";
+
 import { Container } from "./Container";
-
+import Helmet from "react-helmet";
 import { ILayout } from "../types/interfaces";
+import React from "react";
 
 const Layout: React.FunctionComponent<ILayout> = ({
   subject = "",
@@ -16,7 +16,13 @@ const Layout: React.FunctionComponent<ILayout> = ({
       <Helmet>
         <title>{subject}</title>
       </Helmet>
-      <Table subject={subject}>{children}</Table>
+      <Table subject={subject}>
+        <tbody>
+          <Row>
+            <Column>{children}</Column>
+          </Row>
+        </tbody>
+      </Table>
     </Container>
   );
 };

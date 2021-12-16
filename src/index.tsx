@@ -1,5 +1,6 @@
 import { Link, Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
+import { Editor } from "./Editor";
 import Emails from "./emails/index";
 import { Layout } from "./components/Layout";
 import React from "react";
@@ -24,11 +25,11 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<EmailList />} />
+        <Route path="/" element={<Editor />} />
         {Emails.map((Email, index) => {
           const EmailComponent = () => {
             return (
-              <Layout>
+              <Layout {...(Email.subject ? { subject: Email.subject } : {})}>
                 <Email components={mdxComponents} />
               </Layout>
             );
@@ -37,7 +38,13 @@ const App = () => {
             <React.Fragment key={`route-${index.toString()}`}>
               <Route
                 path={`/emails/${Email.name}`}
-                element={<EmailComponent />}
+                element={
+                  <Layout
+                    {...(Email.subject ? { subject: Email.subject } : {})}
+                  >
+                    <Email components={mdxComponents} />
+                  </Layout>
+                }
               />
             </React.Fragment>
           );
