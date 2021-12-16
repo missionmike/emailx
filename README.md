@@ -53,3 +53,5 @@ username/key file within a `.env` file. This process will:
   - Identify `<img>` components within the email source.
   - Push the `<img>` source file content to remote server directory.
   - Replace `<img src=` in HTML email with the public remote-hosted file.
+- Look into how to set this tooling up as a pipeline to fetch or insert dynamic content.
+- Include footer templates with links typically required by email services like Mailchimp, Pardot, etc.
