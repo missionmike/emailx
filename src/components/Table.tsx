@@ -1,17 +1,45 @@
 import styled from "styled-components";
+import React from "react";
 
-interface ITable {
-  subject?: string;
-}
+const Container = ({ children }: { children?: React.Element[] }) => {
+  interface ITable {
+    subject?: string;
+  }
 
-const Table = styled.table<ITable>`
-  width: 600px;
-  margin: 0 auto;
-  background: white;
-`;
+  const TableElement = styled.table<ITable>`
+    width: 600px;
+    margin: 0 auto;
+    background: white;
+    table-layout: fixed;
+  `;
+
+  return (
+    <TableElement>
+      <tbody>{children}</tbody>
+    </TableElement>
+  );
+};
 
 const Row = styled.tr``;
 
-const Column = styled.td``;
+const Box = styled.td``;
 
-export { Table, Row, Column };
+const RowBox = ({ children }: { children?: React.Element[] }) => {
+  return (
+    <Row>
+      <Box>{children}</Box>
+    </Row>
+  );
+};
+
+const Content = ({ children }: { children?: React.Element[] }) => {
+  return (
+    <Row>
+      <Box>
+        <p>{children}</p>
+      </Box>
+    </Row>
+  );
+};
+
+export { Container, Row, Box, RowBox, Content };

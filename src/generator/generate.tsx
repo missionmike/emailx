@@ -1,7 +1,7 @@
 import { existsSync, mkdirSync, writeFileSync } from "fs";
 
 import EmailTemplate from "./EmailTemplate";
-import Emails from "../emails/index";
+import Emails from "../../emails/index";
 import { Layout } from "../components/Layout";
 import React from "react";
 import { ServerStyleSheet } from "styled-components";

@@ -1,7 +1,7 @@
 import { Link, Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 import { Editor } from "./Editor";
-import Emails from "./emails/index";
+import Emails from "../emails/index";
 import { Layout } from "./components/Layout";
 import React from "react";
 import ReactDOM from "react-dom";
@@ -25,15 +25,9 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Editor />} />
+        <Route path="/" element={<EmailList />} />
+        <Route path="/editor/" element={<Editor />} />
         {Emails.map((Email, index) => {
-          const EmailComponent = () => {
-            return (
-              <Layout {...(Email.subject ? { subject: Email.subject } : {})}>
-                <Email components={mdxComponents} />
-              </Layout>
-            );
-          };
           return (
             <React.Fragment key={`route-${index.toString()}`}>
               <Route

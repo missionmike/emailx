@@ -1,6 +1,5 @@
-// import "../css/reset.scss";
-
-import { Column, Row, Table } from "./Table";
+import "../css/reset.scss";
+import "../css/main.scss";
 
 import { Container } from "./Container";
 import Helmet from "react-helmet";
@@ -16,13 +15,7 @@ const Layout: React.FunctionComponent<ILayout> = ({
       <Helmet>
         <title>{subject}</title>
       </Helmet>
-      <Table subject={subject}>
-        <tbody>
-          <Row>
-            <Column>{children}</Column>
-          </Row>
-        </tbody>
-      </Table>
+      {children}
     </Container>
   );
 };
