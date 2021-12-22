@@ -1,13 +1,12 @@
-import * as mainScss from "../css/main.scss";
-import * as resetScss from "../css/reset.scss";
-
+import { GlobalStyleReset } from "../css/GlobalStyleReset";
+import { GlobalStyleMain } from "../css/GlobalStyleMain";
 import { Container } from "./Container";
 import Helmet from "react-helmet";
 import { ILayout } from "../types/interfaces";
 import React from "react";
 
 const Layout: React.FunctionComponent<ILayout> = ({
-  subject = "",
+  subject = `untitled_${Date.now()}`,
   children = <React.Fragment></React.Fragment>,
 }) => {
   return (
@@ -15,6 +14,8 @@ const Layout: React.FunctionComponent<ILayout> = ({
       <Helmet>
         <title>{subject}</title>
       </Helmet>
+      <GlobalStyleReset />
+      <GlobalStyleMain />
       {children}
     </Container>
   );

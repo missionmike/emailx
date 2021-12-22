@@ -16,12 +16,13 @@ if (!existsSync("./output")) {
 Emails.map((Email) => {
   const sheet = new ServerStyleSheet();
   const template = new EmailTemplate();
-  const subject = ""; // TODO
+  const subject = Email.subject || `untitled_${Date.now()}`;
+  const emailFilename = subject.replace(/[^a-z0-9]/gi, "_").toLowerCase();
 
   try {
     const innerHtml = renderToString(
       sheet.collectStyles(
-        <Layout>
+        <Layout subject={Email.subject}>
           <Email />
         </Layout>
       )
@@ -32,6 +33,8 @@ Emails.map((Email) => {
     const htmlHead = template.getHtmlHead({ title: subject, styleTags });
     const htmlBody = template.getHtmlBody({ innerHtml });
 
+    console.log(subject);
+
     let html = "";
     html += doctype;
     html += '<html xmlns="http://www.w3.org/1999/xhtml">';
@@ -40,7 +43,7 @@ Emails.map((Email) => {
     html += "</html>";
 
     let prettyHtml = prettier.format(html, { parser: "html" });
-    let outputFile = `./output/${Email.name}.html`;
+    let outputFile = `./output/${emailFilename}.html`;
 
     const inlineCssOptions = {
       url: __filename,
