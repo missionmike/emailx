@@ -1,5 +1,5 @@
-import "../css/reset.scss";
-import "../css/main.scss";
+import * as mainScss from "../css/main.scss";
+import * as resetScss from "../css/reset.scss";
 
 import { Container } from "./Container";
 import Helmet from "react-helmet";
